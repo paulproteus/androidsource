@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-import os, sys
+import os, sys, os.path
 
-sys.path.append('..')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import vendor
 vendor.vendorify()
 
