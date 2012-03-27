@@ -12,7 +12,8 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^', direct_to_template, {'template': 'index.html'}),
+    url(r'^$', direct_to_template, {'template': 'index.html'}),
+    url(r'^phone-demo-page', direct_to_template, {'template': 'phone-demo-page.html'}),
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 )
