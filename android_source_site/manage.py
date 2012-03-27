@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os, sys
 
+sys.path.append('..')
 import vendor
 vendor.vendorify()
 
