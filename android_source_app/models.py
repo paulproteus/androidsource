@@ -1,6 +1,8 @@
 from django.db import models
 import hashlib
 import django.conf
+import django.core.mail
+import datetime
 
 class Manufacturer(models.Model):
     name = models.CharField(max_length=255)
@@ -17,6 +19,7 @@ class AndroidSourceRequest(models.Model):
     requester = models.ForeignKey(Requester)
     requester_name = models.CharField(max_length=255)
     request_is_confirmed = models.BooleanField(default=False)
+    email_was_sent_on = models.DateTimeField(null=True, default=None)
 
     def get_email_confirmation_key(self):
         hasher = hashlib.sha1()
@@ -28,3 +31,11 @@ class AndroidSourceRequest(models.Model):
         correct_key = self.get_email_confirmation_key()
         if key == correct_key:
             self.request_is_confirmed = True
+
+    def send_as_email(self):
+        django.core.mail.send_mail(
+            'SUBJECT',
+            'MESSAGE', # FIXME: Use a template
+            'from-address@example.com',
+            ['recipient1@example.com', 'recipient2@example.com'])
+        self.email_was_sent_on = datetime.datetime.utcnow()

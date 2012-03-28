@@ -1,5 +1,6 @@
 from django.utils import unittest
 import android_source_app.models
+import django.core.mail
 import django.test.client
 
 class BaseTestCase(unittest.TestCase):
@@ -17,7 +18,7 @@ class FrontPageTestCase(BaseTestCase):
         self.assertEquals(response.status_code, 200)
 
 class TestEmailConfirmationFlow(BaseTestCase):
-    def test(self):
+    def test_create_request(self):
         # Pretend someone filled out a form requesting the source for Linux
         # This would create a database column for their email address...
         self.requester = android_source_app.models.Requester.objects.create(
@@ -42,3 +43,15 @@ class TestEmailConfirmationFlow(BaseTestCase):
         key = self.source_request.get_email_confirmation_key()
         self.source_request.mark_confirmed(key=key)
         self.assertTrue(self.source_request.request_is_confirmed)
+
+    def test_send_email(self):
+        self.test_create_request()
+        # Source code requests initially weren't sent on any date
+        self.assertFalse(self.source_request.email_was_sent_on)
+        self.assertFalse(django.core.mail.outbox)
+        # They can be sent as email...
+        self.source_request.send_as_email()
+        # Now there is an email in the outbox, and the email was sent
+        # on a real date.
+        self.assertEqual(1, len(django.core.mail.outbox))
+        self.assertTrue(self.source_request.email_was_sent_on)
