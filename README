@@ -1,0 +1,7 @@
+To run the thing:
+
+    python android_source_site/manage.py runserver
+
+Yay!
+
+
