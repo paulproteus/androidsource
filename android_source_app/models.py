@@ -10,16 +10,21 @@ class Handset(models.Model):
     name = models.CharField(max_length=255)
 
 class Requester(models.Model):
-    name = models.CharField(max_length=255)
     email = models.EmailField()
-    email_is_confirmed = models.BooleanField(default=False)
-
-    def get_email_confirmation_key(self):
-        hasher = hashlib.sha()
-        hasher.update(django.conf.settings.SECRET_KEY)
-        hasher.update(self.email)
-        return hasher.digest()
 
 class AndroidSourceRequest(models.Model):
-    handset = models.ForeignKey(Manufacturer)
+    handset = models.ForeignKey(Handset)
     requester = models.ForeignKey(Requester)
+    requester_name = models.CharField(max_length=255)
+    request_is_confirmed = models.BooleanField(default=False)
+
+    def get_email_confirmation_key(self):
+        hasher = hashlib.sha1()
+        hasher.update(django.conf.settings.SECRET_KEY)
+        hasher.update(self.requester.email)
+        return hasher.hexdigest()
+
+    def mark_confirmed(self, key):
+        correct_key = self.get_email_confirmation_key()
+        if key == correct_key:
+            self.request_is_confirmed = True
