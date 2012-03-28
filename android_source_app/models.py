@@ -35,7 +35,7 @@ class AndroidSourceRequest(models.Model):
     def send_as_email(self):
         django.core.mail.send_mail(
             'SUBJECT',
-            'MESSAGE', # FIXME: Use a template
+            'MESSAGE ' + self.get_email_confirmation_key(), # FIXME: Use a template
             'from-address@example.com',
             ['recipient1@example.com', 'recipient2@example.com'])
         self.email_was_sent_on = datetime.datetime.utcnow()

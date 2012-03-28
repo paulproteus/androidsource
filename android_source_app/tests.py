@@ -55,3 +55,6 @@ class TestEmailConfirmationFlow(BaseTestCase):
         # on a real date.
         self.assertEqual(1, len(django.core.mail.outbox))
         self.assertTrue(self.source_request.email_was_sent_on)
+        # Make sure the email contains the confirmation key
+        self.assertTrue(self.source_request.get_email_confirmation_key() in
+                        django.core.mail.outbox[0].message().as_string())
