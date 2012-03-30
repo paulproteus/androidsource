@@ -5,7 +5,7 @@ import django.core.mail
 import datetime
 
 class Manufacturer(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
 class Handset(models.Model):
     manufacturer = models.ForeignKey(Manufacturer)
