@@ -58,3 +58,13 @@ class TestEmailConfirmationFlow(BaseTestCase):
         # Make sure the email contains the confirmation key
         self.assertTrue(self.source_request.get_email_confirmation_key() in
                         django.core.mail.outbox[0].message().as_string())
+
+
+### FIXME:
+# We need to test the second stage, where we actually
+# send the email to HTC.
+
+### FIXME:
+# If the email to e.g. HTC bounces, we want to
+# process the bounce and update the database to say it's
+# un-requested, also notifying the user.
