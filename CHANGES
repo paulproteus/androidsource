@@ -54,3 +54,145 @@ Emails
 
 
 </strikeout>
+
+On manufacturers + handsets etc.
+--------------------------------
+
+* There are only so many manufacturers. We can improve the user experience
+  by pre-filling it with email addresses.
+
+On images
+---------
+
+* Pages like http://phandroid.com/phones/ have big lists of phones with images.
+  Maybe we can 
+
+On source requests
+------------------
+
+* mjg59 initially thinks pne outstanding kernel request per kernel version
+* Brett likes more. We agree three is enough.
+** Brett likes sending the request text to the person if we hit the 3 max in-flight.
+
+Where vendors have source request sites, pre-populate
+
+Limitations
+-----------
+
+* .config is actually a necessary part of source code
+* Everyone fails on written offers
+
+Vendor source request sites
+---------------------------
+
+* Where we can, we should pre-fill
+  a table of e.g.
+
+    2.6.35.10-g96de068 =>
+        http://dl.htc.com/...tar.gz
+
+(perhaps mine this automatically)
+
+Request template text
+---------------------
+
+* Brett already plans to make sample
+  text for this.
+
+On handset model
+----------------
+
+* Front page (or similar) lists all the
+  possible names, e.g. ['T-Mobile G2',
+    'HTC Desire Z'], and then users
+  can click the one that makes the most
+  sense to them. Those all go to the
+  same web URL for the source code
+  availability.
+
+  We pre-populate that as well as we can.
+
+* Users can add phone names, and phones.
+  They show up as "Unconfirmed" and
+  site admins make them "Confirmed".
+  "Phone names" are aliases that refer
+   to the same real phone.
+
+Definition of "phone" (AKA handset)
+for our use: Anything that could (ignoring
+vendor locking type stuff) boot a given Android
+image. i.e. Two physically-different handsets
+with buttons in different places that boot the
+same operating system and work the same would
+be the "same" for our purposes.
+
+Compliance states
+-----------------
+
+YES, NO, unknown
+
+Go to a "NO" if we email the user a month
+later and they say, "The vendor did not
+comply with the request for source."
+
+When you get source code from the vendor,
+you get to write your thoughts about the
+quality (e.g, stuff missing? .config missing?
+encryption keys that you probably can't get
+under GPLv2 missing?) that get stored as part
+of the uname -a => tgz mapping
+
+We invite you to upload it, or give us a URL.
+You require an upload token in order to do it.
+
+Submitting kernel source availability
+-------------------------------------
+
+Vendors could submit uname -a => tgz mapping,
+just like any user of the site.
+
+Users should be able to say, "I think this
+other link to source code should be sufficient,
+even though the vendor didn't tell me that."
+
+Email intermediary
+------------------
+
+Don't bother doing it because it doesn't
+dramatically increase the chance of us
+getting the source. Examples:
+
+* Customer support person says,
+  "Chat with us via this web link"
+
+* Recipient of source gets a one-time
+  download link.
+
+etc.
+
+Phones vs. tablets
+------------------
+
+<thinking>
+Model for Handset should have:
+    Is this tablets?
+
+And FAQ should say, "We have tried
+really hard to make good quality data on
+the phones."....
+</thinking>
+
+so just stick with phones for now.
+
+Discussion forums
+-----------------
+
+The site could have a local forum. Or we 
+could say, "Discuss with each other in the 
+general Android XDA-developers forum." Site 
+admins can be contacted at this publicly 
+archived mailing list.
+
+Or Brett suggests we auto-create a wiki page,
+but then we have the complexity of moving pages
+when we discover new aliases for phones, etc.
