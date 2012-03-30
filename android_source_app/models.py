@@ -8,6 +8,9 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
 class Handset(models.Model):
+    class Meta:
+        unique_together = ('manufacturer', 'name')
+
     manufacturer = models.ForeignKey(Manufacturer)
     name = models.CharField(max_length=255)
 
