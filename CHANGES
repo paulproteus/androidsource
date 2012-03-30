@@ -1,2 +1,56 @@
 * Store email addresses in the Manufacturer model
 ** Site admins will admin those in the "Admin" section
+
+* This means we only ever one email
+
+* We should be the "From" address on all these emails
+** And we can log those publicly
+
+Retry
+-----
+
+* Retry once a month
+
+More fields
+------------
+
+On Handset:
+ * Requests disabled for reason: _______________________
+
+
+Emails
+------
+
+* From address is the user
+
+* Only one request can be outstanding at a time
+
+* The email we send BCC: us
+
+* Every week or month or so, we look at the websi
+  stale requests
+
+<strikeout>
+
+* From address is our Django app, which creates a mini forwarder
+  (which I promise is easy!!) that sends the email to the requester
+
+
+    e.g. if Asheesh requests Linux source for HTC G2
+        From: Asheesh <HTC_G2-owner@our-site.com>
+        BCC: asheesh@asheesh.org
+        ...
+
+    and when we receive emails to HTC_G2@oursite.com we look
+        in an email forwarders table, find that SOME_KEY points to
+        a Handset, which implicitly points to the Requester and other Subscribers,
+        and we forward it to all those people
+
+    (NOTE: the string we put in the email address is a 'slug', calculated
+            in the usual Django-esque way to calculate a 'slug')
+
+* The "From:" email address is really a secure key that lets someone send
+  email to the group of people subscribed to updates for that phone.
+
+
+</strikeout>
