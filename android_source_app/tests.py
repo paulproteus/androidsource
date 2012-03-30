@@ -37,7 +37,7 @@ class TestEmailConfirmationFlow(BaseTestCase):
         # remain unconfirmed in the face of wrong confirmation keys,
         # and become confirmed in the face of right ones.
         self.assertFalse(self.source_request.request_is_confirmed)
-        self.source_request.mark_confirmed(key='stupid_stuff')
+        self.source_request.mark_confirmed(key='arbitrary string that is an invalid key')
         self.assertFalse(self.source_request.request_is_confirmed)
 
         key = self.source_request.get_email_confirmation_key()
